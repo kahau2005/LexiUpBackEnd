@@ -3,6 +3,8 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const cookieParse = require('cookie-parser')
+const authRoute = require("./routes/auth")
+const rootRoute = require("./routes")
 
 const PORT = 8000
 
@@ -13,14 +15,13 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log("Connected!")
 }).catch((err) => console.log("Connection failed!"))
 
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParse())
 app.use(express.json())
 
-
-app.get('/', (req, res) => {
-    res.send("Hello world!");
-})
+//Route
+app.use("/v1/auth", authRoute)
+app.use("/", rootRoute)
 
 app.listen(PORT, () => {
     console.log(`The app is running at https://localhost:${PORT}`)

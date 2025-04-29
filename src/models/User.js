@@ -6,7 +6,10 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     phone_number: { type: String },
     full_name: { type: String, required: true },
-    role: { type: String, enum: ['student', 'teacher'], required: true }
-}, { discriminatorKey: 'role' });
+    teacher:{
+        type: Boolean,
+        default: false
+    }
+}, { timestamps: true })
 
 module.exports = mongoose.model('User', UserSchema);
