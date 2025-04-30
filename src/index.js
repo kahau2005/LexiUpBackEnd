@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log("Connected!")
 }).catch((err) => console.log("Connection failed!"))
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({credentials: true, origin: '*'}))
 app.use(cookieParse())
 app.use(express.json())
 

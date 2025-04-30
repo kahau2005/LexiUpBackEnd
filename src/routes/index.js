@@ -4,7 +4,7 @@ const middlewareController = require("../controllers/middlewareController");
 const router = require("express").Router();
 
 router.post('/createcourse', courseController.createCourse);
-router.get('/courses', courseController.getAllCourses);
+router.get('/courses', middlewareController.verifyToken, courseController.getAllCourses);
 
 
 module.exports = router;

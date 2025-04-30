@@ -5,7 +5,8 @@ const courseController = {
     createCourse: async(req, res) => {
         const newCourse = new Courses({
             course_name: req.body.course_name,
-            owner: req.body.owner
+            owner: req.body.owner,
+            thumbnail: req.body.thumbnail
         });
         try{
             await newCourse.save();

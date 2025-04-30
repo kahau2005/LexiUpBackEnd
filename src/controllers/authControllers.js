@@ -68,7 +68,10 @@ const authController = {
                 })
 
                 const {password, ...others} = user._doc;
-                return res.status(200).json(user)
+                return res.status(200).json({
+                    ...others,
+                    accessToken
+                })
             }
 
         }catch(err){
